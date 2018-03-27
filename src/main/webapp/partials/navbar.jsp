@@ -1,9 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div class="navbar-container" style="padding: 15px 0; background-color: #f3f3f3; font-size: 2em;">
-    <ul style="list-style: none; padding: 0; text-align: center">
-        <li style="display: inline; margin-right: 50px;"><a style="text-decoration: none; font-weight: bold;" href="ads.jsp">Adlister</a></li>
-        <li style="display: inline; margin-right: 50px;"><a style="text-decoration: none; font-weight: bold;" href="profile.jsp">Profile</a></li>
-        <li style="display: inline; margin-right: 50px;"><a style="text-decoration: none; font-weight: bold;" href="login.jsp">Login</a></li>
-    </ul>
-</div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-id" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-id">
+            <ul class="nav navbar-nav">
+                <li><a href="/profile.jsp">Profile</a></li>
+                <li><a href="/ads.jsp">Ads</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/login.jsp">Login</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

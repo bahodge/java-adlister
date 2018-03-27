@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <jsp:include page="partials/head.jsp"/>
     <title>Login</title>
 </head>
 <body>
@@ -25,16 +26,9 @@
     }
 %>
 
-<%!
-    private int doMath(int x, int y){
-        return x + y;
-    }
-%>
-
 <jsp:include page="partials/navbar.jsp"/>
 
 <h1>Please login</h1>
-<h2>This is me doing some cool math!!! ::: <%= doMath(10, 5) + doMath(1000, -889)%></h2>
 
 <form action="/login.jsp" method="POST">
     <input type="text" name="username" placeholder="Enter Username">
@@ -42,5 +36,6 @@
     <button type="submit">Login</button>
 </form>
 
+<jsp:include page="partials/scripts.jsp"/>
 </body>
 </html>
