@@ -14,6 +14,7 @@ public class GuessingServlet extends HttpServlet {
         String guessString = request.getParameter("guess");
         int guess = Integer.parseInt(guessString);
 
+
 //        CHeck if it is the number!
         if (guess == computerNumber){
             request.setAttribute("answer", "You Guessed It");
@@ -23,6 +24,7 @@ public class GuessingServlet extends HttpServlet {
             request.setAttribute("answer", "Lower");
         }
 
+        request.setAttribute("cpuNum", computerNumber);
         request.getRequestDispatcher("guess-answer.jsp").forward(request, response);
     }
 

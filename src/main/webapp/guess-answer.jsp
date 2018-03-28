@@ -12,6 +12,7 @@
 </head>
 <body>
 
+    <h1>The Computer Number is: ${cpuNum}</h1>
     <h2>${answer}</h2>
     <form action="/guessinggame" method="GET">
         <button>Try Again</button>
