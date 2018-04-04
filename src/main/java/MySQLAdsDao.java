@@ -1,4 +1,3 @@
-import com.mysql.cj.api.mysqla.result.Resultset;
 import com.mysql.cj.jdbc.Driver;
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class MySQLAdsDao implements Ads {
         List<Ad> ads = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM ads_db.ads");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
             while (rs.next()){
                 Ad ad = new Ad(rs.getLong("id"), rs.getString("title"), rs.getString("description"));
                 ads.add(ad);
@@ -38,17 +37,21 @@ public class MySQLAdsDao implements Ads {
     @Override
     public Long insert(Ad ad) {
         try {
-            String query = "INSERT INTO ads_db.ads(title, description) VALUES (" + ad.getTitle() + ", " + ad.getDescription() + ")";
             Statement stmt = connection.createStatement();
-            stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate(createInsertQuery(ad), Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()){
-                System.out.println("Inserted a new ad");
-            }
+            rs.next();
+            System.out.printf("Inserting a new ad: user_id: %s title: %s", ad.getUserId(), ad.getTitle());
+            return rs.getLong(1);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Something went wrong inserting the new ad", e);
         }
-        return ad.getId();
     }
 
+    private String createInsertQuery(Ad ad) {
+        return "INSERT INTO ads(user_id, title, description) VALUES "
+                + "(" + ad.getUserId() + ", "
+                + "'" + ad.getTitle() +"', "
+                + "'" + ad.getDescription() + "')";
+    }
 }
